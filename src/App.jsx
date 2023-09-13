@@ -25,10 +25,13 @@ function App() {
         return todo;
       });
     });
-    console.log("title", todos.title);
   };
 
-  console.log(todos);
+  const handleDelete = (id) => {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todo) => todo.id !== id);
+    });
+  };
 
   return (
     <>
@@ -57,7 +60,12 @@ function App() {
                   onChange={(e) => toggleCheck(todo.id, e.target.checked)}
                 />
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button
+                onClick={() => handleDelete(todo.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
             </li>
           );
         })}
