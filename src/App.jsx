@@ -13,9 +13,23 @@ function App() {
         { id: crypto.randomUUID(), title: newItem, completed: false },
       ];
     });
+    //setNewItem("");
+  };
+
+  const toggleCheck = (id, completed) => {
+    setTodos((currentTodos) => {
+      return currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed };
+        }
+        return todo;
+      });
+    });
+    console.log("title", todos.title);
   };
 
   console.log(todos);
+
   return (
     <>
       <form onSubmit={handleSubmit} className="new-item-form">
@@ -34,10 +48,14 @@ function App() {
       <ul className="list">
         {todos.map((todo) => {
           return (
-            <li>
+            <li key={todo.id}>
               <label>
                 {todo.title}
-                <input type="checkbox" checked={todo.completed} />
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={(e) => toggleCheck(todo.id, e.target.checked)}
+                />
               </label>
               <button className="btn btn-danger">Delete</button>
             </li>
