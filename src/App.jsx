@@ -36,7 +36,11 @@ function App() {
     <>
       <NewTodoForm addTodo={addTodo} />
       <h1 className="header">Planner</h1>
-      <TodoList todos={todos} />
+      <TodoList
+        todos={todos}
+        toggleCheck={toggleCheck}
+        handleDelete={handleDelete}
+      />
     </>
   );
 }
