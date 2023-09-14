@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export function TodoItem({ id, completed, title }) {
+export function TodoItem({ id, completed, title, toggleCheck, handleDelete }) {
   return (
     <li key={id}>
       <label>
@@ -7,13 +7,10 @@ export function TodoItem({ id, completed, title }) {
         <input
           type="checkbox"
           checked={completed}
-          //   onChange={(e) => toggleCheck(id, e.target.checked)}
+          onChange={(e) => toggleCheck(id, e.target.checked)}
         />
       </label>
-      <button
-        // onClick={() => handleDelete(id)}
-        className="btn btn-danger"
-      >
+      <button onClick={() => handleDelete(id)} className="btn btn-danger">
         Delete
       </button>
     </li>
