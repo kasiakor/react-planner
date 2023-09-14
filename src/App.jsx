@@ -1,4 +1,5 @@
 import { NewTodoForm } from "./NewTodoForm";
+import { TodoList } from "./TodoList";
 import "./styles.css";
 import { useState } from "react";
 
@@ -35,30 +36,7 @@ function App() {
     <>
       <NewTodoForm addTodo={addTodo} />
       <h1 className="header">Planner</h1>
-      <ul className="list">
-        {/* Short-circuit evaluation */}
-        {todos.length === 0 && "Nothing to do"}
-        {todos.map((todo) => {
-          return (
-            <li key={todo.id}>
-              <label>
-                {todo.title}
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={(e) => toggleCheck(todo.id, e.target.checked)}
-                />
-              </label>
-              <button
-                onClick={() => handleDelete(todo.id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <TodoList todos={todos} />
     </>
   );
 }
