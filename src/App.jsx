@@ -16,6 +16,15 @@ function App() {
     });
   };
 
+  const addTodo = (title) => {
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos,
+        { id: crypto.randomUUID(), title, completed: false },
+      ];
+    });
+  };
+
   const handleDelete = (id) => {
     setTodos((currentTodos) => {
       return currentTodos.filter((todo) => todo.id !== id);
@@ -24,7 +33,7 @@ function App() {
 
   return (
     <>
-    <NewTodoForm />
+      <NewTodoForm addTodo={addTodo} />
       <h1 className="header">Planner</h1>
       <ul className="list">
         {/* Short-circuit evaluation */}
